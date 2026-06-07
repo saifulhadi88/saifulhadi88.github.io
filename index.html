@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan - Ijang & Yuyun</title>
+    
+    <!-- Tailwind CSS untuk Styling yang Cepat dan Responsif -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts untuk Tipografi yang Elegan -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Konfigurasi Font Custom */
+        .font-script { font-family: 'Great Vibes', cursive; }
+        .font-serif { font-family: 'Lora', serif; }
+        .font-sans { font-family: 'Montserrat', sans-serif; }
+        
+        /* Animasi Scroll Lembut */
+        html { scroll-behavior: smooth; }
+        
+        /* Setup Kelas Animasi Fade-in */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, visibility;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Styling tambahan untuk Details/Summary (Hadiah) */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        
+        /* Animasi Putar Piringan Hitam (Tombol Musik) */
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spin 4s linear infinite;
+        }
+        .pause-spin {
+            animation-play-state: paused;
+        }
+        
+        /* Transisi untuk Cover Pembuka */
+        .cover-transition {
+            transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+        }
+        .slide-up {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none; /* Agar tidak bisa diklik lagi setelah hilang */
+        }
+        
+        /* Mencegah scroll saat Cover aktif */
+        .no-scroll {
+            overflow: hidden;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body class="font-sans text-stone-800 bg-stone-50 antialiased selection:bg-rose-200 no-scroll" id="bodyElement">
+
+    <!-- 0. COVER PEMBUKA (Untuk memicu Autoplay Musik) -->
+    <!-- Ganti URL gambar dengan background yang sesuai untuk cover depan -->
+    <div id="invitationCover" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-cover bg-center cover-transition max-w-md mx-auto shadow-2xl"
+         style="background-image: url('https://drive.google.com/thumbnail?id=1Qn12pqpFQb-_m62KLix-fj5mKFHnVIKj&sz=w2000');">
+        <!-- Overlay Gelap -->
+        <div class="absolute inset-0 bg-black/60"></div>
+        
+        <!-- Konten Cover -->
+        <div class="relative z-10 text-center text-white p-6 flex flex-col items-center justify-center h-full w-full">
+            <p class="text-xs uppercase tracking-[0.3em] mb-4 opacity-80">Undangan Pernikahan</p>
+            <h1 class="text-6xl font-script mb-2 drop-shadow-lg">Ijang & Yuyun</h1>
+            <p class="text-sm font-serif italic mb-10 opacity-90">12 Juni 2026</p>
+            
+            <p class="text-xs mb-2 opacity-80">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+            <!-- Menampilkan nama tamu secara dinamis dari URL -->
+            <h2 id="namaTamu" class="text-xl font-semibold mb-10 border-b border-white/50 pb-2 inline-block px-4">Tamu Undangan</h2>
+            
+            <!-- Tombol Buka Undangan (Memicu Fungsi bukaUndangan) -->
+            <button onclick="bukaUndangan()" class="bg-white text-stone-800 px-8 py-3 rounded-full font-semibold text-sm shadow-xl hover:bg-stone-200 transition-all flex items-center gap-2 transform hover:scale-105">
+                <svg class="w-5 h-5 text-stone-600" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                Buka Undangan
+            </button>
+            <p class="text-[10px] mt-4 opacity-70 flex items-center justify-center gap-1">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg>
+                Nyalakan suara untuk pengalaman terbaik
+            </p>
+        </div>
+    </div>
+
+    <!-- ELEMEN AUDIO TERSEMBUNYI -->
+    <!-- Ganti src dengan link lagu dari Google Drive Anda (gunakan link direct download seperti pada gambar) -->
+    <!-- Dummy audio menggunakan file mp3 bebas royalti -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.dropbox.com/scl/fi/9amjhw85x8z4kw4fwce0r/Westlife-Nothing-s-Going-to-Change-My-Love-For-You-Audio-00_00_00-00_01_25.mp3?rlkey=q5k71wijp3eueho3jr351mk3k&st=r47mvm0d&raw=1" type="audio/mpeg">
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+
+    <!-- TOMBOL KONTROL MUSIK MELAYANG -->
+    <button id="musicToggleBtn" onclick="toggleMusic()" class="fixed bottom-6 right-6 md:right-[calc(50%-13rem)] z-40 bg-stone-800 text-white p-3 rounded-full shadow-2xl opacity-0 transition-opacity duration-1000 hidden">
+        <!-- Ikon Piringan Hitam berputar (Kondisi Play) -->
+        <svg id="musicIconPlay" class="w-6 h-6 animate-spin-slow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg>
+        <!-- Ikon Suara Dicoret (Kondisi Pause) - Disembunyikan awalnya -->
+        <svg id="musicIconPause" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.907L5.586 15z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path></svg>
+    </button>
+
+    <!-- Container Utama: Dibuat seperti tampilan aplikasi mobile (max-width) namun tetap cantik di desktop -->
+    <main class="max-w-md mx-auto bg-white shadow-2xl overflow-hidden relative">
+
+        <!-- 1. SECTION: HERO BANNER -->
+        <!-- Ganti background-image URL dengan URL foto prewed utama Anda dari Google Drive -->
+        <header class="relative h-screen flex flex-col items-center justify-center bg-cover bg-center" 
+                style="background-image: url('https://drive.google.com/thumbnail?id=1zuJKUOGG1lMFFRt6ePUNf1YyygOYwLNc&sz=w2000');">
+            <!-- Overlay gelap agar teks terbaca -->
+            <div class="absolute inset-0 bg-black/40"></div>
+            
+            <div class="relative z-10 text-center text-white px-4 fade-in-section is-visible">
+                <p class="text-sm tracking-[0.2em] uppercase mb-4 font-medium">The Wedding Of</p>
+                <h1 class="text-7xl font-script mb-2 drop-shadow-md">Ijang <span class="text-4xl">&</span> Yuyun</h1>
+                <div class="w-32 h-[1px] bg-white/70 mx-auto my-4"></div>
+                <p class="text-lg font-serif font-semibold tracking-wider drop-shadow-md">12 . 12 . 2026</p>
+            </div>
+            
+            <!-- Indikator Scroll ke Bawah -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+            </div>
+        </header>
+
+        <!-- 2. SECTION: PEMBUKAAN & KUTIPAN -->
+        <section class="py-16 px-8 text-center bg-stone-100 fade-in-section">
+            <h3 class="font-script text-3xl mb-6 text-stone-600">Bismillahirahmanirrahim</h3>
+            <p class="font-serif italic text-sm leading-relaxed text-stone-600 mb-6">
+                "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya diantaramu rasa kasih dan sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berfikir."
+            </p>
+            <p class="text-xs font-semibold tracking-widest uppercase text-stone-500">- QS. Ar-Rum: 21 -</p>
+        </section>
+
+        <!-- 3. SECTION: PROFIL MEMPELAI -->
+        <section class="py-16 px-6 relative overflow-hidden bg-white fade-in-section">
+            <!-- Ornamen Dekoratif (Opsional) -->
+            <div class="text-center mb-10">
+                <p class="text-sm uppercase tracking-widest text-stone-500 mb-2">Mempelai Kami</p>
+                <h2 class="text-4xl font-script text-stone-800">Groom & Bride</h2>
+            </div>
+
+            <div class="flex flex-col gap-12">
+                <!-- Mempelai Pria -->
+                <div class="flex flex-col items-center text-center fade-in-section">
+                    <!-- Ganti src dengan link foto pria -->
+                    <div class="w-40 h-40 rounded-full overflow-hidden border-4 border-stone-100 shadow-lg mb-6">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400" alt="Groom" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold mb-2">Ijang Montague, S.T.</h3>
+                    <p class="text-sm text-stone-500 leading-relaxed">
+                        Putra pertama dari<br>
+                        <span class="font-medium text-stone-700">Bapak X & Ibu Y</span>
+                    </p>
+                    <a href="#" class="mt-3 text-stone-400 hover:text-stone-600">
+                        <svg class="w-5 h-5 inline" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    </a>
+                </div>
+
+                <div class="text-center font-script text-5xl text-stone-300 fade-in-section">&</div>
+
+                <!-- Mempelai Wanita -->
+                <div class="flex flex-col items-center text-center fade-in-section">
+                    <!-- Ganti src dengan link foto wanita -->
+                    <div class="w-40 h-40 rounded-full overflow-hidden border-4 border-stone-100 shadow-lg mb-6">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400" alt="Bride" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold mb-2">Dian Nurul Safitri</h3>
+                    <p class="text-sm text-stone-500 leading-relaxed">
+                        Putri bungsu dari<br>
+                        <span class="font-medium text-stone-700">H. Tahir Sa'id & Hj.Masdah Wartini</span>
+                    </p>
+                    <a href="#" class="mt-3 text-stone-400 hover:text-stone-600">
+                        <svg class="w-5 h-5 inline" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. SECTION: DETAIL ACARA -->
+        <section class="py-16 px-6 bg-stone-800 text-stone-100 fade-in-section">
+            <div class="text-center mb-10">
+                <p class="text-sm uppercase tracking-widest text-stone-400 mb-2">Simpan Tanggalnya</p>
+                <h2 class="text-4xl font-script text-white">Rangkaian Acara</h2>
+            </div>
+
+            <!-- Card Akad -->
+            <div class="bg-stone-50 text-stone-800 rounded-xl p-6 text-center mb-6 shadow-lg border-t-4 border-stone-300 fade-in-section">
+                <h3 class="font-serif text-2xl font-bold mb-4">Akad Nikah</h3>
+                <div class="flex justify-center items-center gap-4 mb-4 text-sm font-medium">
+                    <div class="text-right">
+                        <span class="block text-2xl font-bold">12</span>
+                    </div>
+                    <div class="w-[1px] h-8 bg-stone-300"></div>
+                    <div class="text-left">
+                        <span class="block uppercase tracking-wider text-xs">Juni</span>
+                        <span class="block">2026</span>
+                    </div>
+                </div>
+                <p class="text-sm mb-1"><span class="font-semibold">Pukul:</span> 08.00 WIB - Selesai</p>
+                <p class="text-sm font-semibold mt-4">Dusun Karang Siswa</p>
+                <p class="text-xs text-stone-500 mt-1">Desa Masbagik Selatan, Kec. Masbagik, Lombok Timur</p>
+            </div>
+
+            <!-- Card Resepsi -->
+            <div class="bg-stone-50 text-stone-800 rounded-xl p-6 text-center mb-8 shadow-lg border-t-4 border-stone-300 fade-in-section">
+                <h3 class="font-serif text-2xl font-bold mb-4">Resepsi</h3>
+                <div class="flex justify-center items-center gap-4 mb-4 text-sm font-medium">
+                    <div class="text-right">
+                        <span class="block text-2xl font-bold">12</span>
+                    </div>
+                    <div class="w-[1px] h-8 bg-stone-300"></div>
+                    <div class="text-left">
+                        <span class="block uppercase tracking-wider text-xs">Juni</span>
+                        <span class="block">2026</span>
+                    </div>
+                </div>
+                <p class="text-sm mb-1"><span class="font-semibold">Pukul:</span> 11.00 - 14.00 WIB</p>
+                <p class="text-sm font-semibold mt-4">Dusun Karang Siswa</p>
+                <p class="text-xs text-stone-500 mt-1">Masbagik Selatan Kec. Masbagik</p>
+            </div>
+
+            <!-- Tombol Add to Calendar -->
+            <div class="text-center fade-in-section">
+                <!-- Ganti href dengan link Google Calendar Event Anda -->
+                <a href="#" class="inline-block bg-white text-stone-800 px-6 py-3 rounded-full font-semibold text-sm shadow-md hover:bg-stone-200 transition-colors">
+                    + Simpan ke Kalender
+                </a>
+            </div>
+        </section>
+
+        <!-- 5. SECTION: PETA LOKASI -->
+        <section class="py-12 bg-white fade-in-section">
+            <div class="text-center px-6 mb-6">
+                <h2 class="text-2xl font-serif font-bold text-stone-800 mb-2">Lokasi Acara</h2>
+                <p class="text-sm text-stone-500">Klik tombol di bawah untuk membuka peta navigasi ke lokasi acara.</p>
+            </div>
+            
+            <!-- Google Maps Embed -->
+            <div class="w-full h-64 bg-gray-200 mb-6">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1972.3187277348154!2d116.4838645421463!3d-8.630759687852144!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcc4b0000552313%3A0x31b53cfb5ddf3984!2sDimsum%20Mentai%20Masbagik!5e0!3m2!1sid!2sid!4v1780757823489!5m2!1sid!2sid" 
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+            <div class="text-center px-6">
+                <!-- Ganti href dengan link Map lokasi sesungguhnya -->
+                <a href="https://maps.app.goo.gl/capFLabjaTYbTCpS9" target="_blank" class="inline-block bg-stone-800 text-white px-6 py-3 rounded-full font-semibold text-sm shadow-md hover:bg-stone-700 transition-colors">
+                    Buka Google Maps
+                </a>
+            </div>
+        </section>
+
+        <!-- 6. SECTION: GALERI FOTO -->
+        <section class="py-16 px-4 bg-stone-100 fade-in-section">
+            <div class="text-center mb-8">
+                <h2 class="text-4xl font-script text-stone-800">Our Gallery</h2>
+            </div>
+            
+            <!-- Grid Foto Sederhana -->
+            <div class="grid grid-cols-2 gap-2">
+                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=400" class="w-full h-40 object-cover rounded shadow-sm fade-in-section" alt="Gallery 1">
+                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&q=80&w=400" class="w-full h-40 object-cover rounded shadow-sm fade-in-section" alt="Gallery 2">
+                <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&q=80&w=400" class="w-full h-40 object-cover rounded shadow-sm col-span-2 fade-in-section" alt="Gallery 3">
+            </div>
+        </section>
+
+        <!-- 7. SECTION: RSVP & WISHES -->
+        <!-- Catatan: Untuk Google Sites asli, Anda biasanya me-embed iframe Google Form. 
+             Di sini saya buatkan form HTML agar terlihat cantik secara desain. 
+             Nantinya action="" bisa diarahkan ke script Google Form (pre-filled link). -->
+        <section class="py-16 px-6 bg-white fade-in-section">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-serif font-bold text-stone-800 mb-2">RSVP & Ucapan</h2>
+                <p class="text-sm text-stone-500">Kehadiran & doa restu Anda sangat berarti bagi kami.</p>
+            </div>
+
+            <form id="rsvpForm" class="bg-stone-50 p-6 rounded-xl shadow-inner border border-stone-200">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-stone-700 mb-1">Nama Lengkap</label>
+                    <input type="text" id="rsvpNama" name="entry.78163206" class="w-full px-4 py-2 border border-stone-300 rounded focus:outline-none focus:border-stone-500 focus:ring-1 focus:ring-stone-500" placeholder="Masukkan nama Anda" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-stone-700 mb-1">Konfirmasi Kehadiran</label>
+                    <select name="entry.2045520364" class="w-full px-4 py-2 border border-stone-300 rounded focus:outline-none focus:border-stone-500 bg-white" required>
+                        <option value="" disabled selected>Pilih kehadiran...</option>
+                        <option value="Hadir">Ya, Saya akan hadir</option>
+                        <option value="Tidak Hadir">Maaf, Saya tidak bisa hadir</option>
+                    </select>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-stone-700 mb-1">Pesan & Doa</label>
+                    <textarea name="entry.588730201" class="w-full px-4 py-2 border border-stone-300 rounded focus:outline-none focus:border-stone-500 focus:ring-1 focus:ring-stone-500" rows="3" placeholder="Tuliskan ucapan dan doa untuk mempelai" required></textarea>
+                </div>
+                <button type="submit" id="submitBtn" class="w-full bg-stone-800 text-white font-semibold py-3 rounded shadow hover:bg-stone-700 transition">Kirim Konfirmasi</button>
+                <p id="formMessage" class="mt-4 text-center text-sm font-semibold text-emerald-600 hidden">Terima kasih! Konfirmasi & pesan Anda telah terkirim.</p>
+            </form>
+        </section>
+
+        <!-- SECTION: DAFTAR UCAPAN TAMU -->
+        <section class="py-12 px-6 bg-white fade-in-section border-t border-stone-100">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-serif font-bold text-stone-800 mb-2">Pesan Tamu</h2>
+                <p class="text-sm text-stone-500">Ucapan hangat dari orang-orang tersayang</p>
+            </div>
+            
+            <div class="bg-stone-50 p-4 rounded-xl shadow-inner border border-stone-200">
+                <!-- Kontainer tempat pesan ditampilkan -->
+                <div id="messagesContainer" class="max-h-80 overflow-y-auto space-y-3 pr-2">
+                    <p class="text-center text-xs text-stone-500 py-4">Memuat pesan tamu...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. SECTION: WEDDING GIFT (Collapsible) -->
+        <section class="py-12 px-6 bg-stone-100 fade-in-section">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-serif font-bold text-stone-800 mb-2">Wedding Gift</h2>
+                <p class="text-sm text-stone-500">Bagi keluarga/sahabat yang ingin mengirimkan tanda kasih, dapat melalui tautan di bawah ini.</p>
+            </div>
+
+            <!-- Elemen HTML Details/Summary menciptakan fitur Collapsible otomatis -->
+            <details class="bg-white rounded-lg shadow border border-stone-200 overflow-hidden group">
+                <summary class="font-semibold text-stone-800 p-4 cursor-pointer flex justify-between items-center outline-none">
+                    <span>Kirim Hadiah (Transfer Bank)</span>
+                    <svg class="w-5 h-5 text-stone-500 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </summary>
+                
+                <div class="p-6 border-t border-stone-100 text-center bg-stone-50">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/1200px-Bank_Central_Asia.svg.png" alt="Logo BCA" class="h-6 mx-auto mb-4 opacity-70">
+                    <p class="text-sm text-stone-500 mb-1">No. Rekening:</p>
+                    <p class="text-xl font-bold tracking-widest text-stone-800 mb-1" id="rek1">1234 5678 90</p>
+                    <p class="text-sm text-stone-600 mb-4">a.n. Ijang Montague</p>
+                    
+                    <button onclick="copyRekening('rek1')" class="bg-stone-200 hover:bg-stone-300 text-stone-700 text-sm py-2 px-4 rounded-full transition flex items-center justify-center mx-auto gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                        Salin No. Rekening
+                    </button>
+                    <!-- Notifikasi sukses copy disembunyikan awalnya -->
+                    <p id="msg-rek1" class="text-xs text-green-600 mt-2 hidden">Nomor rekening berhasil disalin!</p>
+                </div>
+            </details>
+        </section>
+
+        <!-- 9. SECTION: FOOTER -->
+        <footer class="bg-stone-900 text-stone-300 py-12 px-6 text-center pb-24"> <!-- pb-24 ditambahkan agar konten tidak tertutup tombol musik melayang -->
+            <p class="text-sm mb-6 leading-relaxed">
+                Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.
+            </p>
+            <p class="text-sm mb-6">Terima kasih,</p>
+            <h2 class="text-4xl font-script text-white mb-10">Ijang & Yuyun</h2>
+            
+            <div class="border-t border-stone-700 pt-6 mt-6">
+                <p class="text-xs text-stone-500">
+                    Created with ♥ by <span class="text-stone-400">Dinn Dinsum</span><br>
+                    © 2026 All Rights Reserved
+                </p>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- JavaScript untuk fungsionalitas interaktif -->
+    <script>
+        // 0. Fungsi Membuka Undangan & Memutar Musik
+        var audio = document.getElementById("bgMusic");
+        var isPlaying = false;
+        var coverElement = document.getElementById("invitationCover");
+        var bodyElement = document.getElementById("bodyElement");
+        var musicBtn = document.getElementById("musicToggleBtn");
+
+        function bukaUndangan() {
+            // Animasi Cover menghilang ke atas
+            coverElement.classList.add("slide-up");
+            
+            // Mengizinkan user melakukan scroll pada halaman utama
+            bodyElement.classList.remove("no-scroll");
+            
+            // Coba memutar musik (memanfaatkan interaksi klik dari user)
+            tryPlayMusic();
+            
+            // Tampilkan tombol kontrol musik setelah sedikit jeda (agar cover naik dulu)
+            setTimeout(function() {
+                musicBtn.classList.remove("hidden");
+                // Trigger reflow untuk memastikan transisi opacity berjalan
+                void musicBtn.offsetWidth; 
+                musicBtn.classList.remove("opacity-0");
+                musicBtn.classList.add("opacity-100");
+            }, 500);
+        }
+
+        // Fungsi bantu untuk memutar musik
+        function tryPlayMusic() {
+            audio.play().then(function() {
+                isPlaying = true;
+                updateMusicIcon();
+            }).catch(function(error) {
+                // Kadang browser tetap memblokir meskipun sudah ada interaksi. 
+                // Jika gagal, log error dan biarkan status pause.
+                console.log("Autoplay dicegah oleh browser. Pengguna harus menekan tombol Play secara manual.", error);
+                isPlaying = false;
+                updateMusicIcon();
+            });
+        }
+
+        // Fungsi Toggle Play/Pause Musik
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                isPlaying = false;
+            } else {
+                audio.play();
+                isPlaying = true;
+            }
+            updateMusicIcon();
+        }
+
+        // Update ikon pada tombol musik melayang
+        function updateMusicIcon() {
+            var iconPlay = document.getElementById("musicIconPlay");
+            var iconPause = document.getElementById("musicIconPause");
+            
+            if (isPlaying) {
+                // Tampilkan ikon piringan berputar, sembunyikan ikon pause
+                iconPlay.classList.remove("hidden");
+                iconPause.classList.add("hidden");
+            } else {
+                // Tampilkan ikon pause, sembunyikan ikon piringan berputar
+                iconPlay.classList.add("hidden");
+                iconPause.classList.remove("hidden");
+            }
+        }
+
+        // 1. Fungsi Salin ke Clipboard (Copy to Clipboard)
+        function copyRekening(elementId) {
+            // Ambil teks dari elemen id (buang spasi agar murni angka)
+            var text = document.getElementById(elementId).innerText.replace(/\s+/g, '');
+            
+            // Menggunakan API Clipboard modern
+            navigator.clipboard.writeText(text).then(function() {
+                // Tampilkan pesan sukses
+                var msg = document.getElementById('msg-' + elementId);
+                msg.classList.remove('hidden');
+                
+                // Sembunyikan pesan setelah 3 detik
+                setTimeout(function() {
+                    msg.classList.add('hidden');
+                }, 3000);
+            }).catch(function(err) {
+                console.error('Gagal menyalin teks: ', err);
+                alert('Gagal menyalin. Silakan blok dan salin manual.');
+            });
+        }
+
+        // 2. Animasi Fade-In saat di-scroll (Intersection Observer)
+        document.addEventListener('DOMContentLoaded', function() {
+            var sections = document.querySelectorAll('.fade-in-section');
+            
+            var observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 // Animasi terpicu saat 15% elemen terlihat di layar
+            };
+
+            var observer = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        // Optional: Berhenti mengawasi jika sudah animasi sekali
+                        // observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(function(section) {
+                observer.observe(section);
+            });
+        });
+
+        // 3. Integrasi Form RSVP ke Google Forms Tanpa Pindah Halaman
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Mencegah reload halaman
+            
+            var form = e.target;
+            var submitBtn = document.getElementById('submitBtn');
+            var formMessage = document.getElementById('formMessage');
+            
+            submitBtn.innerHTML = 'Mengirim...';
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+
+            var formData = new FormData(form);
+            var actionUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdujE3aZ1byXYqVVX5D8nIms5DUBkgRX8xWLjQHPvuhUUapBg/formResponse';
+
+            // Kirim via fetch dengan mode 'no-cors' agar tidak terblokir proteksi Google
+            fetch(actionUrl, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: formData
+            }).then(function() {
+                // Berhasil: Kosongkan form & tampilkan pesan sukses
+                form.reset();
+                submitBtn.innerHTML = 'Kirim Konfirmasi';
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                formMessage.classList.remove('hidden');
+                
+                // Panggil ulang daftar pesan agar pesan yang baru dikirim otomatis muncul (jeda 2 detik)
+                setTimeout(fetchMessages, 2000);
+                
+                // Sembunyikan notif sukses setelah 5 detik
+                setTimeout(function() {
+                    formMessage.classList.add('hidden');
+                }, 5000);
+            }).catch(function(error) {
+                console.error('Error saat mengirim!', error);
+                alert('Terjadi kesalahan. Gagal mengirim data. Silakan coba lagi.');
+                submitBtn.innerHTML = 'Kirim Konfirmasi';
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            });
+        });
+
+        // 4. Mengambil Data Ucapan dari Google Sheets (Format CSV)
+        function fetchMessages() {
+            var csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRaCWbe-f7J3EUqxuNrVsdT2lmNQH2BO_k54uGw4YIREmedIH5r9JQ1iBrbnYtRyPag3pTVIdzg5a-I/pub?gid=851767042&single=true&output=csv';
+            
+            fetch(csvUrl)
+                .then(function(response) { return response.text(); })
+                .then(function(data) {
+                    var rows = parseCSV(data);
+                    var container = document.getElementById('messagesContainer');
+                    container.innerHTML = ''; // Kosongkan daftar sebelumnya
+
+                    // Jika hanya ada 1 baris (header/judul kolom) atau kosong
+                    if (rows.length <= 1) {
+                        container.innerHTML = '<p class="text-center text-xs text-stone-500 py-4">Belum ada ucapan. Jadilah yang pertama!</p>';
+                        return;
+                    }
+
+                    // Iterasi terbalik agar pesan terbaru berada di paling atas
+                    for (var i = rows.length - 1; i > 0; i--) {
+                        var row = rows[i];
+                        if (row.length < 4 || !row[1]) continue; // Lewati jika data kosong/tidak sempurna
+
+                        var timestamp = row[0];
+                        var nama = row[1];
+                        var kehadiran = row[2];
+                        var pesan = row[3];
+
+                        // Menentukan gaya label kehadiran (Hijau jika hadir, Merah jika tidak)
+                        var isHadir = kehadiran.toLowerCase().indexOf('tidak') === -1;
+                        var badgeColor = isHadir ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700';
+                        var badgeIcon = isHadir ? '✓' : '✗';
+
+                        // Membuat elemen HTML untuk setiap pesan
+                        var msgElement = document.createElement('div');
+                        msgElement.className = 'bg-white p-4 rounded-lg shadow-sm border border-stone-100';
+                        msgElement.innerHTML = `
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold text-stone-800 text-sm">` + escapeHTML(nama) + `</h4>
+                                <span class="text-[10px] px-2 py-1 rounded-full font-semibold ` + badgeColor + ` flex items-center gap-1 shadow-sm whitespace-nowrap">
+                                    ` + badgeIcon + ` ` + escapeHTML(kehadiran) + `
+                                </span>
+                            </div>
+                            <p class="text-xs text-stone-600 whitespace-pre-wrap leading-relaxed mt-1">"` + escapeHTML(pesan) + `"</p>
+                            <p class="text-[9px] text-stone-400 mt-3 flex justify-end">` + escapeHTML(timestamp) + `</p>
+                        `;
+                        container.appendChild(msgElement);
+                    }
+                })
+                .catch(function(error) {
+                    console.error('Gagal mengambil data Spreadsheet:', error);
+                    document.getElementById('messagesContainer').innerHTML = '<p class="text-center text-xs text-stone-500 py-4">Gagal memuat pesan tamu dari server.</p>';
+                });
+        }
+
+        // Fungsi Bantuan: Parse CSV String ke Array Multidimensi
+        function parseCSV(text) {
+            var p = '', row = [''], ret = [row], i = 0, r = 0, s = !0, l;
+            for (var charIndex = 0; charIndex < text.length; charIndex++) {
+                l = text[charIndex];
+                if ('"' === l) {
+                    if (s && l === p) row[i] += l;
+                    s = !s;
+                } else if (',' === l && s) {
+                    l = row[++i] = '';
+                } else if ('\n' === l && s) {
+                    if ('\r' === p) row[i] = row[i].slice(0, -1);
+                    row = ret[++r] = [l = '']; i = 0;
+                } else {
+                    row[i] += l;
+                }
+                p = l;
+            }
+            return ret.filter(function(rowData) { return rowData.length > 1 || rowData[0] !== ''; });
+        }
+
+        // Fungsi Bantuan: Mencegah error karakter HTML (XSS Protection)
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, function(tag) {
+                var chars = { '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' };
+                return chars[tag] || tag;
+            });
+        }
+
+        // Memuat daftar ucapan pertama kali saat halaman dirender
+        document.addEventListener('DOMContentLoaded', fetchMessages);
+
+        // 5. Menangkap Parameter URL untuk Nama Tamu Dinamis
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mengambil parameter dari URL (mendukung ?to=Nama atau ?nama=Nama)
+            var urlParams = new URLSearchParams(window.location.search);
+            var tamuURL = urlParams.get('to') || urlParams.get('nama');
+            
+            if (tamuURL) {
+                // Tampilkan nama di Cover Depan (menggunakan escapeHTML untuk mencegah bug karakter unik)
+                document.getElementById('namaTamu').innerHTML = escapeHTML(tamuURL);
+                
+                // Otomatis mengisi kolom Nama di Form RSVP (Bonus UX)
+                var rsvpInput = document.getElementById('rsvpNama');
+                if(rsvpInput) {
+                    rsvpInput.value = tamuURL;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
