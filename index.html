@@ -65,6 +65,15 @@
             overflow: hidden;
             height: 100vh;
         }
+
+        /* Menyembunyikan Scrollbar pada Galeri Horizontal */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
     </style>
 </head>
 <body class="font-sans text-stone-800 bg-stone-50 antialiased selection:bg-rose-200 no-scroll" id="bodyElement">
@@ -72,7 +81,7 @@
     <!-- 0. COVER PEMBUKA (Untuk memicu Autoplay Musik) -->
     <!-- Ganti URL gambar dengan background yang sesuai untuk cover depan -->
     <div id="invitationCover" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-cover bg-center cover-transition max-w-md mx-auto shadow-2xl"
-         style="background-image: url('https://drive.google.com/thumbnail?id=1P5KfQsNvJ7x726gsWkvtUCfmhjqp1pvz&sz=w2000');">
+         style="background-image: url('https://drive.google.com/thumbnail?id=1ErTW-FFLqUYcUd2wGOnNTsLk6JwtY2hv&sz=w2000');">
         <!-- Overlay Gelap -->
         <div class="absolute inset-0 bg-black/60"></div>
         
@@ -120,7 +129,7 @@
         <!-- 1. SECTION: HERO BANNER -->
         <!-- Ganti background-image URL dengan URL foto prewed utama Anda dari Google Drive -->
         <header class="relative h-screen flex flex-col items-center justify-center bg-cover bg-center" 
-                style="background-image: url('https://drive.google.com/thumbnail?id=1xKZpLEr_5F0M159bDx-AQi3kOuIQyAGP&sz=w2000');">
+                style="background-image: url('https://drive.google.com/thumbnail?id=1Z7Hxjb9ERGcebKUvqgajTjb4PnbPgdUu&sz=w2000');">
             <!-- Overlay gelap agar teks terbaca -->
             <div class="absolute inset-0 bg-black/40"></div>
             
@@ -158,12 +167,12 @@
                 <!-- Mempelai Pria -->
                 <div class="flex flex-col items-center text-center fade-in-section">
                     <!-- Ganti src dengan link foto pria -->
-                    <div class="w-40 h-40 rounded-full overflow-hidden border-4 border-stone-100 shadow-lg mb-6">
-                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400" alt="Groom" class="w-full h-full object-cover">
+                    <div class="w-43 h-43 rounded-full overflow-hidden border-4 border-stone-100 shadow-lg mb-6">
+                        <img src="https://drive.google.com/thumbnail?id=1sRsiOJb3AtmxLXiUU8ACT7o2q_4610y7" alt="Groom" class="w-full h-full object-cover">
                     </div>
                     <h3 class="font-serif text-2xl font-bold mb-2">Muhammad Faizal</h3>
                     <p class="text-sm text-stone-500 leading-relaxed">
-                        Putra pertama dari<br>
+                        Putra kedua dari<br>
                         <span class="font-medium text-stone-700">Muh. Anwar & Wardah</span>
                     </p>
                     <a href="#" class="mt-3 text-stone-400 hover:text-stone-600">
@@ -176,8 +185,8 @@
                 <!-- Mempelai Wanita -->
                 <div class="flex flex-col items-center text-center fade-in-section">
                     <!-- Ganti src dengan link foto wanita -->
-                    <div class="w-40 h-40 rounded-full overflow-hidden border-4 border-stone-100 shadow-lg mb-6">
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400" alt="Bride" class="w-full h-full object-cover">
+                    <div class="w-43 h-43 rounded-full overflow-hidden border-4 border-stone-100 shadow-lg mb-6">
+                        <img src="https://drive.google.com/thumbnail?id=1MZx9aer1DvLXJ7bNvNe2SbMZrVS8aAMu" alt="Bride" class="w-full h-full object-cover">
                     </div>
                     <h3 class="font-serif text-2xl font-bold mb-2">Dian Nurul Safitri</h3>
                     <p class="text-sm text-stone-500 leading-relaxed">
@@ -249,16 +258,38 @@
         </section>
 
         <!-- 6. SECTION: GALERI FOTO -->
-        <section class="py-16 px-4 bg-stone-100 fade-in-section">
-            <div class="text-center mb-8">
+        <section class="py-16 bg-stone-100 fade-in-section relative">
+            <div class="text-center mb-6 px-4">
                 <h2 class="text-4xl font-script text-stone-800">Our Gallery</h2>
+                <p class="text-xs text-stone-500 mt-2 tracking-widest uppercase">Geser untuk melihat, klik untuk memperbesar</p>
             </div>
             
-            <!-- Grid Foto Sederhana -->
-            <div class="grid grid-cols-2 gap-2">
-                <img src="https://drive.google.com/thumbnail?id=1eiAcgOm5dvEz9Ujo2C9ucYoKdoTN5EV1&fit=crop&q=80&w=400" class="w-full h-40 object-cover rounded shadow-sm fade-in-section" alt="Gallery 1">
-                <img src="https://drive.google.com/thumbnail?id=1IIZSfN1oqgfl7FwXForPgecAYmeAnqao&fit=crop&q=80&w=400" class="w-full h-40 object-cover rounded shadow-sm fade-in-section" alt="Gallery 2">
-                <img src="https://drive.google.com/thumbnail?id=1P5KfQsNvJ7x726gsWkvtUCfmhjqp1pvz&fit=crop&q=80&w=400" class="w-full h-40 object-cover rounded shadow-sm col-span-2 fade-in-section" alt="Gallery 3">
+            <!-- Container Horizontal Slider -->
+            <!-- Penambahan &sz=w2500 memaksa Google Drive mengirimkan gambar Resolusi Tinggi (HD) -->
+            <div class="flex overflow-x-auto snap-x snap-mandatory no-scrollbar px-6 gap-4 pb-8 pt-4">
+                <!-- Foto 1 -->
+                <img src="https://drive.google.com/thumbnail?id=1oaSk58UBBCIDrEq9RgGmym3WhqW1Mzo_&sz=w2500" class="gallery-img w-64 h-80 object-cover rounded-xl shadow-md flex-shrink-0 snap-center cursor-pointer transition transform hover:scale-[1.02]" onclick="openLightbox(0)" alt="Gallery 1">
+                <!-- Foto 2 -->
+                <img src="https://drive.google.com/thumbnail?id=1ai8CFJGFYTbMKRRhRYFZB5Q6tCsHZA39&sz=w2500" class="gallery-img w-64 h-80 object-cover rounded-xl shadow-md flex-shrink-0 snap-center cursor-pointer transition transform hover:scale-[1.02]" onclick="openLightbox(1)" alt="Gallery 2">
+                <!-- Foto 3 -->
+                <img src="https://drive.google.com/thumbnail?id=1ZAMSAq7CIbnUKVlRseQcs8whstmiIe3E&sz=w2500" class="gallery-img w-64 h-80 object-cover rounded-xl shadow-md flex-shrink-0 snap-center cursor-pointer transition transform hover:scale-[1.02]" onclick="openLightbox(2)" alt="Gallery 3">
+                <!-- Foto 4 -->
+                <img src="https://drive.google.com/thumbnail?id=1ElG89UMCyLrCMB37bbVh0FxNW_ohHI1l&sz=w2500" class="gallery-img w-64 h-80 object-cover rounded-xl shadow-md flex-shrink-0 snap-center cursor-pointer transition transform hover:scale-[1.02]" onclick="openLightbox(3)" alt="Gallery 4">
+                <!-- Foto 5 -->
+                <img src="https://drive.google.com/thumbnail?id=1fHBCMZ4p6DrwHMdSWXGVJgjMXkqleRvz&sz=w2500" class="gallery-img w-64 h-80 object-cover rounded-xl shadow-md flex-shrink-0 snap-center cursor-pointer transition transform hover:scale-[1.02]" onclick="openLightbox(4)" alt="Gallery 5">
+                <!-- Foto 6 -->
+                <img src="https://drive.google.com/thumbnail?id=1uSY7SNoo0bTFiPFXAf7lK0592EPTWrUj&sz=w2500" class="gallery-img w-64 h-80 object-cover rounded-xl shadow-md flex-shrink-0 snap-center cursor-pointer transition transform hover:scale-[1.02]" onclick="openLightbox(5)" alt="Gallery 6">
+                <!-- Foto 7 -->
+                <img src="https://drive.google.com/thumbnail?id=1MwUjlVnRdKnhW4HrHUSMRKQmNFOSSZqs&sz=w2500" class="gallery-img w-64 h-80 object-cover rounded-xl shadow-md flex-shrink-0 snap-center cursor-pointer transition transform hover:scale-[1.02]" onclick="openLightbox(6)" alt="Gallery 7">
+                <!-- Foto 8 -->
+                <img src="https://drive.google.com/thumbnail?id=1g4zoqLeFVUHAquvprzNfzyr_w-HRkzKa&sz=w2500" class="gallery-img w-64 h-80 object-cover rounded-xl shadow-md flex-shrink-0 snap-center cursor-pointer transition transform hover:scale-[1.02]" onclick="openLightbox(7)" alt="Gallery 8">
+                <!-- Foto 9 -->
+                <img src="https://drive.google.com/thumbnail?id=1CNDD1ZVCYeeN-dUXX-X8ytB17D2ROCwv&sz=w2500" class="gallery-img w-64 h-80 object-cover rounded-xl shadow-md flex-shrink-0 snap-center cursor-pointer transition transform hover:scale-[1.02]" onclick="openLightbox(8)" alt="Gallery 9">
+            </div>
+            
+            <!-- Indikator Swipe (Panah halus di sebelah kanan) -->
+            <div class="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none opacity-50 animate-pulse">
+                <svg class="w-8 h-8 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
             </div>
         </section>
 
@@ -324,10 +355,10 @@
                 </summary>
                 
                 <div class="p-6 border-t border-stone-100 text-center bg-stone-50">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/1200px-Bank_Central_Asia.svg.png" alt="Logo BCA" class="h-6 mx-auto mb-4 opacity-70">
+                    <img src="https://drive.google.com/thumbnail?id=1hGGnn6_KE5aec9wJZkfiPcpV1Xq5TPfG" alt="Logo BRI" class="h-6 mx-auto mb-4 opacity-70">
                     <p class="text-sm text-stone-500 mb-1">No. Rekening:</p>
-                    <p class="text-xl font-bold tracking-widest text-stone-800 mb-1" id="rek1">1234 5678 90</p>
-                    <p class="text-sm text-stone-600 mb-4">a.n. Ijang Montague</p>
+                    <p class="text-xl font-bold tracking-widest text-stone-800 mb-1" id="rek1"> 2291 0100 2065 532</p>
+                    <p class="text-sm text-stone-600 mb-4">a.n. Dian Nurul</p>
                     
                     <button onclick="copyRekening('rek1')" class="bg-stone-200 hover:bg-stone-300 text-stone-700 text-sm py-2 px-4 rounded-full transition flex items-center justify-center mx-auto gap-2">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
@@ -356,6 +387,43 @@
         </footer>
 
     </main>
+
+    <!-- LIGHTBOX MODAL (UNTUK MENAMPILKAN GAMBAR FULLSCREEN & SLIDER) -->
+    <div id="lightbox" class="fixed inset-0 z-[60] bg-black/95 hidden flex-col items-center justify-center opacity-0 transition-opacity duration-300" onclick="closeLightbox()">
+        
+        <!-- Header Lightbox (Counter & Close) -->
+        <div class="absolute top-0 left-0 right-0 p-6 flex justify-between items-center z-50 bg-gradient-to-b from-black/70 to-transparent text-white" onclick="event.stopPropagation();">
+            <span id="lightboxCounter" class="text-sm font-sans tracking-widest font-semibold drop-shadow-md">1 / 9</span>
+            <button class="text-white/80 hover:text-white p-2 transition-transform transform hover:scale-110" onclick="closeLightbox()">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <!-- Tombol Prev (Desktop) -->
+        <button onclick="changeLightboxImage(-1); event.stopPropagation();" class="absolute left-4 z-50 p-3 text-white/50 hover:text-white hidden md:block transition-transform transform hover:scale-110 bg-black/20 rounded-full">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+
+        <!-- Area Gambar (Bisa di-swipe, menutupi seluruh ruang) -->
+        <div class="w-full h-full flex items-center justify-center relative touch-pan-y px-2" id="lightboxSwipeArea">
+            <!-- object-contain menjaga proporsi asli, mencegah terpotong, dan tampil HD penuh -->
+            <img id="lightboxImg" src="" class="max-w-full max-h-[90vh] w-auto h-auto object-contain transition-all duration-300 transform scale-95 select-none" onclick="event.stopPropagation();">
+        </div>
+
+        <!-- Tombol Next (Desktop) -->
+        <button onclick="changeLightboxImage(1); event.stopPropagation();" class="absolute right-4 z-50 p-3 text-white/50 hover:text-white hidden md:block transition-transform transform hover:scale-110 bg-black/20 rounded-full">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+
+        <!-- Indikator Geser (Mobile) -->
+        <div class="absolute bottom-10 left-0 right-0 text-center z-50 md:hidden pointer-events-none">
+            <p class="text-white/70 text-xs tracking-widest uppercase flex items-center justify-center gap-2 drop-shadow-md">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Geser
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </p>
+        </div>
+    </div>
 
     <!-- JavaScript untuk fungsionalitas interaktif -->
     <script>
@@ -621,6 +689,112 @@
                 }
             }
         });
+
+        // 6. FUNGSI LIGHTBOX (MENAMPILKAN FOTO FULLSCREEN & SLIDER)
+        var galleryImagesList = [];
+        var currentLightboxIndex = 0;
+
+        // Kumpulkan semua URL gambar HD saat halaman dimuat pertama kali
+        document.addEventListener('DOMContentLoaded', function() {
+            var galleryImgs = document.querySelectorAll('.gallery-img');
+            galleryImgs.forEach(function(img) {
+                galleryImagesList.push(img.src);
+            });
+        });
+
+        function openLightbox(index) {
+            currentLightboxIndex = index;
+            var lightbox = document.getElementById('lightbox');
+            var lightboxImg = document.getElementById('lightboxImg');
+            var counter = document.getElementById('lightboxCounter');
+            
+            // Set sumber gambar HD dan teks counter
+            lightboxImg.src = galleryImagesList[currentLightboxIndex];
+            counter.innerText = (currentLightboxIndex + 1) + " / " + galleryImagesList.length;
+            
+            // Tampilkan lightbox
+            lightbox.classList.remove('hidden');
+            
+            // Gunakan sedikit jeda untuk memicu efek zoom-in lembut
+            setTimeout(function() {
+                lightbox.classList.remove('opacity-0');
+                lightboxImg.classList.remove('scale-95');
+                lightboxImg.classList.add('scale-100');
+            }, 10);
+            
+            // Kunci layar agar latar belakang utama tidak ikut ter-scroll
+            document.getElementById('bodyElement').classList.add('no-scroll');
+        }
+
+        function closeLightbox() {
+            var lightbox = document.getElementById('lightbox');
+            var lightboxImg = document.getElementById('lightboxImg');
+            
+            // Jalankan animasi menghilang
+            lightbox.classList.add('opacity-0');
+            lightboxImg.classList.remove('scale-100');
+            lightboxImg.classList.add('scale-95');
+            
+            // Sembunyikan elemen sepenuhnya setelah animasi selesai
+            setTimeout(function() {
+                lightbox.classList.add('hidden');
+                lightboxImg.src = ''; // Kosongkan agar tidak flicker
+                document.getElementById('bodyElement').classList.remove('no-scroll');
+            }, 300);
+        }
+
+        function changeLightboxImage(direction) {
+            currentLightboxIndex += direction;
+            
+            // Looping gambar jika sudah mencapai awal atau akhir
+            if (currentLightboxIndex < 0) {
+                currentLightboxIndex = galleryImagesList.length - 1;
+            } else if (currentLightboxIndex >= galleryImagesList.length) {
+                currentLightboxIndex = 0;
+            }
+            
+            var lightboxImg = document.getElementById('lightboxImg');
+            var counter = document.getElementById('lightboxCounter');
+            
+            // Efek memudar sebentar untuk transisi antar gambar
+            lightboxImg.classList.add('opacity-0', 'scale-95');
+            
+            setTimeout(function() {
+                lightboxImg.src = galleryImagesList[currentLightboxIndex];
+                counter.innerText = (currentLightboxIndex + 1) + " / " + galleryImagesList.length;
+                lightboxImg.classList.remove('opacity-0', 'scale-95');
+            }, 200);
+        }
+
+        // --- FUNGSI SWIPE (GESER) UNTUK PENGGUNA SMARTPHONE ---
+        var touchStartX = 0;
+        var touchEndX = 0;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            var swipeArea = document.getElementById('lightboxSwipeArea');
+            if(swipeArea) {
+                // Catat posisi jari saat mulai menyentuh layar
+                swipeArea.addEventListener('touchstart', function(e) {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, {passive: true});
+
+                // Catat posisi jari saat dilepas, lalu evaluasi arah geseran
+                swipeArea.addEventListener('touchend', function(e) {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                }, {passive: true});
+            }
+        });
+
+        function handleSwipe() {
+            var minSwipeDistance = 50; // Jarak minimal (dalam pixel) agar dianggap "geser"
+            if (touchEndX < touchStartX - minSwipeDistance) {
+                changeLightboxImage(1); // Jari geser ke kiri -> Foto Selanjutnya
+            }
+            if (touchEndX > touchStartX + minSwipeDistance) {
+                changeLightboxImage(-1); // Jari geser ke kanan -> Foto Sebelumnya
+            }
+        }
     </script>
 </body>
 </html>
