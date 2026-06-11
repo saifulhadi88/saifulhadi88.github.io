@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
-        /* Memaksa browser merender dalam mode terang saja */
+        /* Memaksa browser merender dalam mode terang saja (Anti-Dark Mode) */
         :root {
             color-scheme: light only !important;
             --light-bg: #fafaf9;
@@ -93,71 +93,68 @@
         }
 
         /* =========================================
-           FRAME ELEGAN (BINGKAI KARTU)
+           ARSITEKTUR BINGKAI FLORAL REALISTIS
            ========================================= */
-        .frame-elegant {
+        
+        /* Bingkai Mode Terang */
+        .frame-floral {
             position: relative;
-            padding: 2.5rem 1.5rem;
+            padding: 3.5rem 1.5rem;
             margin: 0 1.25rem;
-            border-radius: 1.25rem;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
-            border: 1px solid rgba(214, 211, 209, 0.8);
+            border-radius: 0.5rem;
+            background-color: rgba(255, 255, 255, 0.97);
+            
+            /* Bunga Watercolor Realistis Kanan-Atas dan Kiri-Bawah */
+            background-image: 
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3CradialGradient id='b' cx='30%25' cy='30%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%23e3f2fd'/%3E%3Cstop offset='100%25' stop-color='%2364b5f6'/%3E%3C/radialGradient%3E%3CradialGradient id='p' cx='30%25' cy='30%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%23fff3e0'/%3E%3Cstop offset='100%25' stop-color='%23ffb74d'/%3E%3C/radialGradient%3E%3CradialGradient id='pk' cx='30%25' cy='30%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%23fce4ec'/%3E%3Cstop offset='100%25' stop-color='%23f06292'/%3E%3C/radialGradient%3E%3ClinearGradient id='l1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23c5e1a5'/%3E%3Cstop offset='100%25' stop-color='%237cb342'/%3E%3C/linearGradient%3E%3ClinearGradient id='l2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23aed581'/%3E%3Cstop offset='100%25' stop-color='%23558b2f'/%3E%3C/linearGradient%3E%3Cpath id='lf1' d='M0,0 C-10,-10 -15,-20 -5,-30 C5,-35 15,-15 0,0' fill='url(%23l1)' opacity='0.9'/%3E%3Cpath id='lf2' d='M0,0 C-5,-15 -5,-30 5,-40 C15,-25 10,-10 0,0' fill='url(%23l2)' opacity='0.85'/%3E%3Cpath id='br' d='M0,0 Q15,-30 10,-60 T30,-120' fill='none' stroke='url(%23l2)' stroke-width='1.5'/%3E%3Cg id='blF'%3E%3Cpath d='M0,0 C-25,-15 -35,15 -10,30 C15,40 30,15 15,-10 C30,-25 10,-40 -10,-25 C-25,-35 -40,-10 -15,10' fill='url(%23b)' opacity='0.75'/%3E%3Cpath d='M-5,5 C-15,0 -15,20 -5,25 C10,20 15,5 5,-5 C10,-15 -5,-25 -10,-10' fill='url(%23b)' opacity='0.9'/%3E%3Cpath d='M0,10 C-5,10 -5,15 0,20 C5,15 5,10 0,10' fill='%231e88e5' opacity='0.8'/%3E%3C/g%3E%3Cg id='peF'%3E%3Cpath d='M0,0 C-35,-10 -25,30 0,35 C25,35 35,-10 0,-20 C15,-35 -15,-35 -15,-10' fill='url(%23p)' opacity='0.85'/%3E%3Cpath d='M-10,10 C-15,10 -15,25 -5,25 C10,25 10,10 -5,5 C5,-10 -10,-10 -10,5' fill='url(%23p)' opacity='0.95'/%3E%3Ccircle cx='-5' cy='15' r='5' fill='%23fb8c00' opacity='0.6'/%3E%3C/g%3E%3Cg id='pkF'%3E%3Cpath d='M0,-5 C5,-15 15,-5 5,0 C15,5 5,15 -5,5 C-15,15 -20,0 -5,-5 C-15,-15 -5,-20 0,-5 Z' fill='url(%23pk)' opacity='0.9'/%3E%3Ccircle cx='0' cy='-2' r='2' fill='%23c2185b' opacity='0.8'/%3E%3C/g%3E%3C/defs%3E%3Cg transform='rotate(180 100 100)'%3E%3Cuse href='%23br' x='20' y='180' transform='rotate(30 20 180)'/%3E%3Cuse href='%23br' x='40' y='190' transform='rotate(70 40 190)'/%3E%3Cuse href='%23br' x='10' y='160' transform='rotate(10 10 160)'/%3E%3Cuse href='%23lf2' x='35' y='150' transform='rotate(40 35 150)'/%3E%3Cuse href='%23lf2' x='55' y='130' transform='rotate(60 55 130)'/%3E%3Cuse href='%23lf1' x='70' y='110' transform='rotate(80 70 110)'/%3E%3Cuse href='%23lf1' x='90' y='160' transform='rotate(100 90 160)'/%3E%3Cuse href='%23lf2' x='110' y='145' transform='rotate(120 110 145)'/%3E%3Cuse href='%23lf1' x='25' y='110' transform='rotate(10 25 110)'/%3E%3Cuse href='%23lf2' x='10' y='90' transform='rotate(-10 10 90)'/%3E%3Cuse href='%23lf1' x='5' y='60' transform='rotate(-20 5 60)'/%3E%3Cuse href='%23pkF' x='70' y='130' transform='scale(1.2)'/%3E%3Cuse href='%23pkF' x='20' y='120' transform='scale(1.4)'/%3E%3Cuse href='%23pkF' x='50' y='80' transform='scale(1)'/%3E%3Cuse href='%23pkF' x='120' y='160' transform='scale(1.1)'/%3E%3Cuse href='%23blF' x='30' y='160' transform='scale(1.3)'/%3E%3Cuse href='%23peF' x='75' y='165' transform='scale(1.2)'/%3E%3C/g%3E%3C/svg%3E"),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3CradialGradient id='b' cx='30%25' cy='30%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%23e3f2fd'/%3E%3Cstop offset='100%25' stop-color='%2364b5f6'/%3E%3C/radialGradient%3E%3CradialGradient id='p' cx='30%25' cy='30%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%23fff3e0'/%3E%3Cstop offset='100%25' stop-color='%23ffb74d'/%3E%3C/radialGradient%3E%3CradialGradient id='pk' cx='30%25' cy='30%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%23fce4ec'/%3E%3Cstop offset='100%25' stop-color='%23f06292'/%3E%3C/radialGradient%3E%3ClinearGradient id='l1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23c5e1a5'/%3E%3Cstop offset='100%25' stop-color='%237cb342'/%3E%3C/linearGradient%3E%3ClinearGradient id='l2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23aed581'/%3E%3Cstop offset='100%25' stop-color='%23558b2f'/%3E%3C/linearGradient%3E%3Cpath id='lf1' d='M0,0 C-10,-10 -15,-20 -5,-30 C5,-35 15,-15 0,0' fill='url(%23l1)' opacity='0.9'/%3E%3Cpath id='lf2' d='M0,0 C-5,-15 -5,-30 5,-40 C15,-25 10,-10 0,0' fill='url(%23l2)' opacity='0.85'/%3E%3Cpath id='br' d='M0,0 Q15,-30 10,-60 T30,-120' fill='none' stroke='url(%23l2)' stroke-width='1.5'/%3E%3Cg id='blF'%3E%3Cpath d='M0,0 C-25,-15 -35,15 -10,30 C15,40 30,15 15,-10 C30,-25 10,-40 -10,-25 C-25,-35 -40,-10 -15,10' fill='url(%23b)' opacity='0.75'/%3E%3Cpath d='M-5,5 C-15,0 -15,20 -5,25 C10,20 15,5 5,-5 C10,-15 -5,-25 -10,-10' fill='url(%23b)' opacity='0.9'/%3E%3Cpath d='M0,10 C-5,10 -5,15 0,20 C5,15 5,10 0,10' fill='%231e88e5' opacity='0.8'/%3E%3C/g%3E%3Cg id='peF'%3E%3Cpath d='M0,0 C-35,-10 -25,30 0,35 C25,35 35,-10 0,-20 C15,-35 -15,-35 -15,-10' fill='url(%23p)' opacity='0.85'/%3E%3Cpath d='M-10,10 C-15,10 -15,25 -5,25 C10,25 10,10 -5,5 C5,-10 -10,-10 -10,5' fill='url(%23p)' opacity='0.95'/%3E%3Ccircle cx='-5' cy='15' r='5' fill='%23fb8c00' opacity='0.6'/%3E%3C/g%3E%3Cg id='pkF'%3E%3Cpath d='M0,-5 C5,-15 15,-5 5,0 C15,5 5,15 -5,5 C-15,15 -20,0 -5,-5 C-15,-15 -5,-20 0,-5 Z' fill='url(%23pk)' opacity='0.9'/%3E%3Ccircle cx='0' cy='-2' r='2' fill='%23c2185b' opacity='0.8'/%3E%3C/g%3E%3C/defs%3E%3Cuse href='%23br' x='20' y='180' transform='rotate(30 20 180)'/%3E%3Cuse href='%23br' x='40' y='190' transform='rotate(70 40 190)'/%3E%3Cuse href='%23br' x='10' y='160' transform='rotate(10 10 160)'/%3E%3Cuse href='%23lf2' x='35' y='150' transform='rotate(40 35 150)'/%3E%3Cuse href='%23lf2' x='55' y='130' transform='rotate(60 55 130)'/%3E%3Cuse href='%23lf1' x='70' y='110' transform='rotate(80 70 110)'/%3E%3Cuse href='%23lf1' x='90' y='160' transform='rotate(100 90 160)'/%3E%3Cuse href='%23lf2' x='110' y='145' transform='rotate(120 110 145)'/%3E%3Cuse href='%23lf1' x='25' y='110' transform='rotate(10 25 110)'/%3E%3Cuse href='%23lf2' x='10' y='90' transform='rotate(-10 10 90)'/%3E%3Cuse href='%23lf1' x='5' y='60' transform='rotate(-20 5 60)'/%3E%3Cuse href='%23pkF' x='70' y='130' transform='scale(1.2)'/%3E%3Cuse href='%23pkF' x='20' y='120' transform='scale(1.4)'/%3E%3Cuse href='%23pkF' x='50' y='80' transform='scale(1)'/%3E%3Cuse href='%23pkF' x='120' y='160' transform='scale(1.1)'/%3E%3Cuse href='%23blF' x='30' y='160' transform='scale(1.3)'/%3E%3Cuse href='%23peF' x='75' y='165' transform='scale(1.2)'/%3E%3C/svg%3E");
+            background-position: top -10px right -10px, bottom -10px left -10px;
+            background-size: 190px, 190px;
+            background-repeat: no-repeat, no-repeat;
+            
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             z-index: 10;
         }
         
-        /* Garis Luar Bingkai */
-        .frame-elegant::before {
+        /* Garis Bingkai Halus di dalam */
+        .frame-floral::before {
             content: '';
             position: absolute;
-            top: 0.4rem; left: 0.4rem; right: 0.4rem; bottom: 0.4rem;
-            border: 1px solid #d6d3d1; /* stone-300 */
-            border-radius: 0.85rem;
-            pointer-events: none;
-            z-index: 20;
+            top: 15px; left: 15px; right: 15px; bottom: 15px;
+            border: 1px solid rgba(167, 184, 151, 0.6); /* Sage green elegant border */
+            border-radius: 0.25rem;
+            pointer-events: none; /* Agar tidak memblokir klik pada tombol/form */
+            z-index: 1;
         }
 
-        /* Garis Dalam Bingkai (Memberi efek double border yang mewah) */
-        .frame-elegant::after {
-            content: '';
-            position: absolute;
-            top: 0.7rem; left: 0.7rem; right: 0.7rem; bottom: 0.7rem;
-            border: 1px solid rgba(214, 211, 209, 0.4);
-            border-radius: 0.6rem;
-            pointer-events: none;
-            z-index: 20;
-        }
-
-        /* Varian Frame Gelap (Khusus Section Detail Acara) */
-        .frame-elegant-dark {
+        /* Bingkai Mode Gelap (Khusus Section Detail Acara) */
+        .frame-floral-dark {
             position: relative;
-            padding: 2.5rem 1.5rem;
+            padding: 3.5rem 1.5rem;
             margin: 0 1.25rem;
-            border-radius: 1.25rem;
-            background: rgba(28, 25, 23, 0.98); /* stone-900 */
+            border-radius: 0.5rem;
+            background-color: rgba(28, 25, 23, 0.98); /* stone-900 */
+            
+            /* Bunga Watercolor Realistis Kanan-Atas dan Kiri-Bawah */
+            background-image: 
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3CradialGradient id='b' cx='30%25' cy='30%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%23e3f2fd'/%3E%3Cstop offset='100%25' stop-color='%2364b5f6'/%3E%3C/radialGradient%3E%3CradialGradient id='p' cx='30%25' cy='30%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%23fff3e0'/%3E%3Cstop offset='100%25' stop-color='%23ffb74d'/%3E%3C/radialGradient%3E%3CradialGradient id='pk' cx='30%25' cy='30%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%23fce4ec'/%3E%3Cstop offset='100%25' stop-color='%23f06292'/%3E%3C/radialGradient%3E%3ClinearGradient id='l1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23c5e1a5'/%3E%3Cstop offset='100%25' stop-color='%237cb342'/%3E%3C/linearGradient%3E%3ClinearGradient id='l2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23aed581'/%3E%3Cstop offset='100%25' stop-color='%23558b2f'/%3E%3C/linearGradient%3E%3Cpath id='lf1' d='M0,0 C-10,-10 -15,-20 -5,-30 C5,-35 15,-15 0,0' fill='url(%23l1)' opacity='0.9'/%3E%3Cpath id='lf2' d='M0,0 C-5,-15 -5,-30 5,-40 C15,-25 10,-10 0,0' fill='url(%23l2)' opacity='0.85'/%3E%3Cpath id='br' d='M0,0 Q15,-30 10,-60 T30,-120' fill='none' stroke='url(%23l2)' stroke-width='1.5'/%3E%3Cg id='blF'%3E%3Cpath d='M0,0 C-25,-15 -35,15 -10,30 C15,40 30,15 15,-10 C30,-25 10,-40 -10,-25 C-25,-35 -40,-10 -15,10' fill='url(%23b)' opacity='0.75'/%3E%3Cpath d='M-5,5 C-15,0 -15,20 -5,25 C10,20 15,5 5,-5 C10,-15 -5,-25 -10,-10' fill='url(%23b)' opacity='0.9'/%3E%3Cpath d='M0,10 C-5,10 -5,15 0,20 C5,15 5,10 0,10' fill='%231e88e5' opacity='0.8'/%3E%3C/g%3E%3Cg id='peF'%3E%3Cpath d='M0,0 C-35,-10 -25,30 0,35 C25,35 35,-10 0,-20 C15,-35 -15,-35 -15,-10' fill='url(%23p)' opacity='0.85'/%3E%3Cpath d='M-10,10 C-15,10 -15,25 -5,25 C10,25 10,10 -5,5 C5,-10 -10,-10 -10,5' fill='url(%23p)' opacity='0.95'/%3E%3Ccircle cx='-5' cy='15' r='5' fill='%23fb8c00' opacity='0.6'/%3E%3C/g%3E%3Cg id='pkF'%3E%3Cpath d='M0,-5 C5,-15 15,-5 5,0 C15,5 5,15 -5,5 C-15,15 -20,0 -5,-5 C-15,-15 -5,-20 0,-5 Z' fill='url(%23pk)' opacity='0.9'/%3E%3Ccircle cx='0' cy='-2' r='2' fill='%23c2185b' opacity='0.8'/%3E%3C/g%3E%3C/defs%3E%3Cg transform='rotate(180 100 100)'%3E%3Cuse href='%23br' x='20' y='180' transform='rotate(30 20 180)'/%3E%3Cuse href='%23br' x='40' y='190' transform='rotate(70 40 190)'/%3E%3Cuse href='%23br' x='10' y='160' transform='rotate(10 10 160)'/%3E%3Cuse href='%23lf2' x='35' y='150' transform='rotate(40 35 150)'/%3E%3Cuse href='%23lf2' x='55' y='130' transform='rotate(60 55 130)'/%3E%3Cuse href='%23lf1' x='70' y='110' transform='rotate(80 70 110)'/%3E%3Cuse href='%23lf1' x='90' y='160' transform='rotate(100 90 160)'/%3E%3Cuse href='%23lf2' x='110' y='145' transform='rotate(120 110 145)'/%3E%3Cuse href='%23lf1' x='25' y='110' transform='rotate(10 25 110)'/%3E%3Cuse href='%23lf2' x='10' y='90' transform='rotate(-10 10 90)'/%3E%3Cuse href='%23lf1' x='5' y='60' transform='rotate(-20 5 60)'/%3E%3Cuse href='%23pkF' x='70' y='130' transform='scale(1.2)'/%3E%3Cuse href='%23pkF' x='20' y='120' transform='scale(1.4)'/%3E%3Cuse href='%23pkF' x='50' y='80' transform='scale(1)'/%3E%3Cuse href='%23pkF' x='120' y='160' transform='scale(1.1)'/%3E%3Cuse href='%23blF' x='30' y='160' transform='scale(1.3)'/%3E%3Cuse href='%23peF' x='75' y='165' transform='scale(1.2)'/%3E%3C/g%3E%3C/svg%3E"),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3CradialGradient id='b' cx='30%25' cy='30%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%23e3f2fd'/%3E%3Cstop offset='100%25' stop-color='%2364b5f6'/%3E%3C/radialGradient%3E%3CradialGradient id='p' cx='30%25' cy='30%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%23fff3e0'/%3E%3Cstop offset='100%25' stop-color='%23ffb74d'/%3E%3C/radialGradient%3E%3CradialGradient id='pk' cx='30%25' cy='30%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%23fce4ec'/%3E%3Cstop offset='100%25' stop-color='%23f06292'/%3E%3C/radialGradient%3E%3ClinearGradient id='l1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23c5e1a5'/%3E%3Cstop offset='100%25' stop-color='%237cb342'/%3E%3C/linearGradient%3E%3ClinearGradient id='l2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23aed581'/%3E%3Cstop offset='100%25' stop-color='%23558b2f'/%3E%3C/linearGradient%3E%3Cpath id='lf1' d='M0,0 C-10,-10 -15,-20 -5,-30 C5,-35 15,-15 0,0' fill='url(%23l1)' opacity='0.9'/%3E%3Cpath id='lf2' d='M0,0 C-5,-15 -5,-30 5,-40 C15,-25 10,-10 0,0' fill='url(%23l2)' opacity='0.85'/%3E%3Cpath id='br' d='M0,0 Q15,-30 10,-60 T30,-120' fill='none' stroke='url(%23l2)' stroke-width='1.5'/%3E%3Cg id='blF'%3E%3Cpath d='M0,0 C-25,-15 -35,15 -10,30 C15,40 30,15 15,-10 C30,-25 10,-40 -10,-25 C-25,-35 -40,-10 -15,10' fill='url(%23b)' opacity='0.75'/%3E%3Cpath d='M-5,5 C-15,0 -15,20 -5,25 C10,20 15,5 5,-5 C10,-15 -5,-25 -10,-10' fill='url(%23b)' opacity='0.9'/%3E%3Cpath d='M0,10 C-5,10 -5,15 0,20 C5,15 5,10 0,10' fill='%231e88e5' opacity='0.8'/%3E%3C/g%3E%3Cg id='peF'%3E%3Cpath d='M0,0 C-35,-10 -25,30 0,35 C25,35 35,-10 0,-20 C15,-35 -15,-35 -15,-10' fill='url(%23p)' opacity='0.85'/%3E%3Cpath d='M-10,10 C-15,10 -15,25 -5,25 C10,25 10,10 -5,5 C5,-10 -10,-10 -10,5' fill='url(%23p)' opacity='0.95'/%3E%3Ccircle cx='-5' cy='15' r='5' fill='%23fb8c00' opacity='0.6'/%3E%3C/g%3E%3Cg id='pkF'%3E%3Cpath d='M0,-5 C5,-15 15,-5 5,0 C15,5 5,15 -5,5 C-15,15 -20,0 -5,-5 C-15,-15 -5,-20 0,-5 Z' fill='url(%23pk)' opacity='0.9'/%3E%3Ccircle cx='0' cy='-2' r='2' fill='%23c2185b' opacity='0.8'/%3E%3C/g%3E%3C/defs%3E%3Cuse href='%23br' x='20' y='180' transform='rotate(30 20 180)'/%3E%3Cuse href='%23br' x='40' y='190' transform='rotate(70 40 190)'/%3E%3Cuse href='%23br' x='10' y='160' transform='rotate(10 10 160)'/%3E%3Cuse href='%23lf2' x='35' y='150' transform='rotate(40 35 150)'/%3E%3Cuse href='%23lf2' x='55' y='130' transform='rotate(60 55 130)'/%3E%3Cuse href='%23lf1' x='70' y='110' transform='rotate(80 70 110)'/%3E%3Cuse href='%23lf1' x='90' y='160' transform='rotate(100 90 160)'/%3E%3Cuse href='%23lf2' x='110' y='145' transform='rotate(120 110 145)'/%3E%3Cuse href='%23lf1' x='25' y='110' transform='rotate(10 25 110)'/%3E%3Cuse href='%23lf2' x='10' y='90' transform='rotate(-10 10 90)'/%3E%3Cuse href='%23lf1' x='5' y='60' transform='rotate(-20 5 60)'/%3E%3Cuse href='%23pkF' x='70' y='130' transform='scale(1.2)'/%3E%3Cuse href='%23pkF' x='20' y='120' transform='scale(1.4)'/%3E%3Cuse href='%23pkF' x='50' y='80' transform='scale(1)'/%3E%3Cuse href='%23pkF' x='120' y='160' transform='scale(1.1)'/%3E%3Cuse href='%23blF' x='30' y='160' transform='scale(1.3)'/%3E%3Cuse href='%23peF' x='75' y='165' transform='scale(1.2)'/%3E%3C/svg%3E");
+            background-position: top -10px right -10px, bottom -10px left -10px;
+            background-size: 190px, 190px;
+            background-repeat: no-repeat, no-repeat;
+            
             box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(87, 83, 78, 0.8);
             z-index: 10;
         }
 
-        .frame-elegant-dark::before {
+        .frame-floral-dark::before {
             content: '';
             position: absolute;
-            top: 0.4rem; left: 0.4rem; right: 0.4rem; bottom: 0.4rem;
-            border: 1px solid #78716c; /* stone-500 */
-            border-radius: 0.85rem;
+            top: 15px; left: 15px; right: 15px; bottom: 15px;
+            border: 1px solid rgba(167, 184, 151, 0.3); /* Dimmed sage green */
+            border-radius: 0.25rem;
             pointer-events: none;
-            z-index: 20;
-        }
-
-        .frame-elegant-dark::after {
-            content: '';
-            position: absolute;
-            top: 0.7rem; left: 0.7rem; right: 0.7rem; bottom: 0.7rem;
-            border: 1px solid rgba(120, 113, 108, 0.3);
-            border-radius: 0.6rem;
-            pointer-events: none;
-            z-index: 20;
+            z-index: 1;
         }
     </style>
 </head>
@@ -226,17 +223,17 @@
         </header>
 
         <!-- WRAPPER UNTUK SECTION 2 & 3 (BACKGROUND BERSAMA) -->
-        <div class="relative bg-cover bg-center bg-no-repeat py-12" 
+        <div class="relative bg-cover bg-fixed bg-center bg-no-repeat py-12" 
              style="background-image: url('https://drive.google.com/thumbnail?id=1PjRgwy10w8EM70qOYXQOcG0aU3m2rWUg&sz=w2000');">
             
-            <!-- Lapisan Transparansi: Dipergelap sedikit agar frame putih lebih mencolok -->
-            <div class="absolute inset-0 bg-stone-100/70 backdrop-blur-[2px]"></div>
+            <!-- Lapisan Transparansi Pelindung Cerah -->
+            <div class="absolute inset-0 bg-stone-50/90 backdrop-blur-[1px]"></div>
 
             <div class="relative z-10 space-y-12">
                 
                 <!-- 2. SECTION: PEMBUKAAN & KUTIPAN -->
                 <section class="fade-in-section">
-                    <div class="frame-elegant text-center">
+                    <div class="frame-floral text-center">
                         <div class="relative z-30">
                             <h3 class="font-script text-3xl mb-6 text-stone-700">Bismillahirahmanirrahim</h3>
                             <p class="font-serif italic text-sm leading-relaxed text-stone-600 mb-6">
@@ -249,7 +246,7 @@
 
                 <!-- 3. SECTION: PROFIL MEMPELAI -->
                 <section class="fade-in-section">
-                    <div class="frame-elegant">
+                    <div class="frame-floral">
                         <div class="relative z-30">
                             <div class="text-center mb-10">
                                 <p class="text-sm uppercase tracking-widest text-stone-500 mb-2">Mempelai Kami</p>
@@ -259,7 +256,7 @@
                             <div class="flex flex-col gap-10">
                                 <!-- Mempelai Pria -->
                                 <div class="flex flex-col items-center text-center fade-in-section">
-                                    <div class="w-40 h-40 rounded-full overflow-hidden border-4 border-white shadow-lg mb-4">
+                                    <div class="w-40 h-43 rounded-full overflow-hidden border-4 border-white shadow-lg mb-4">
                                         <img src="https://drive.google.com/thumbnail?id=1sRsiOJb3AtmxLXiUU8ACT7o2q_4610y7" alt="Groom" class="w-full h-full object-cover">
                                     </div>
                                     <h3 class="font-serif text-2xl font-bold mb-1 text-stone-800">Muhammad Faizal</h3>
@@ -273,7 +270,7 @@
 
                                 <!-- Mempelai Wanita -->
                                 <div class="flex flex-col items-center text-center fade-in-section">
-                                    <div class="w-40 h-40 rounded-full overflow-hidden border-4 border-white shadow-lg mb-4">
+                                    <div class="w-40 h-43 rounded-full overflow-hidden border-4 border-white shadow-lg mb-4">
                                         <img src="https://drive.google.com/thumbnail?id=1MZx9aer1DvLXJ7bNvNe2SbMZrVS8aAMu" alt="Bride" class="w-full h-full object-cover">
                                     </div>
                                     <h3 class="font-serif text-2xl font-bold mb-1 text-stone-800">Dian Nurul Safitri</h3>
@@ -292,7 +289,7 @@
 
         <!-- 4. SECTION: DETAIL ACARA -->
         <section class="py-12 bg-stone-800 text-stone-100 fade-in-section">
-            <div class="frame-elegant-dark">
+            <div class="frame-floral-dark">
                 <div class="relative z-30">
                     <div class="text-center mb-8">
                         <p class="text-sm uppercase tracking-widest text-stone-400 mb-2">Simpan Tanggalnya</p>
@@ -300,9 +297,9 @@
                     </div>
 
                     <!-- Card Akad -->
-                    <div class="bg-stone-50 text-stone-800 rounded-xl p-6 text-center mb-8 shadow-lg border-t-4 border-stone-300 fade-in-section">
-                        <h3 class="font-serif text-2xl font-bold mb-4">Akad Nikah</h3>
-                        <div class="flex justify-center items-center gap-4 mb-4 text-sm font-medium">
+                    <div class="bg-stone-50 text-stone-800 rounded-xl p-6 text-center mb-8 shadow-lg border-t-4 border-stone-300 fade-in-section relative overflow-hidden">
+                        <h3 class="font-serif text-2xl font-bold mb-4 relative z-10">Akad Nikah</h3>
+                        <div class="flex justify-center items-center gap-4 mb-4 text-sm font-medium relative z-10">
                             <div class="text-right">
                                 <span class="block text-2xl font-bold">14</span>
                             </div>
@@ -312,9 +309,9 @@
                                 <span class="block">2026</span>
                             </div>
                         </div>
-                        <p class="text-sm mb-1"><span class="font-semibold">Pukul:</span> 09.00 WITA - Selesai</p>
-                        <p class="text-sm font-semibold mt-4">Kp Karang Siswa</p>
-                        <p class="text-xs text-stone-500 mt-1">Desa Masbagik Selatan, Kec. Masbagik, Lombok Timur</p>
+                        <p class="text-sm mb-1 relative z-10"><span class="font-semibold">Pukul:</span> 09.00 WITA - Selesai</p>
+                        <p class="text-sm font-semibold mt-4 relative z-10">Kp Karang Siswa</p>
+                        <p class="text-xs text-stone-500 mt-1 relative z-10">Desa Masbagik Selatan, Kec. Masbagik, Lombok Timur</p>
                     </div>
 
                     <!-- Tombol Add to Calendar -->
@@ -329,7 +326,7 @@
 
         <!-- 5. SECTION: PETA LOKASI -->
         <section class="py-12 bg-stone-100 fade-in-section">
-            <div class="frame-elegant">
+            <div class="frame-floral">
                 <div class="relative z-30 text-center">
                     <h2 class="text-2xl font-serif font-bold text-stone-800 mb-2">Lokasi Acara</h2>
                     <p class="text-sm text-stone-500 mb-6">Klik tombol di bawah untuk membuka peta navigasi ke lokasi acara.</p>
@@ -349,7 +346,7 @@
 
         <!-- 6. SECTION: GALERI FOTO -->
         <section class="py-12 bg-stone-200 fade-in-section relative">
-            <div class="frame-elegant !px-2 !pb-10">
+            <div class="frame-floral !pt-10 !px-2 !pb-10">
                 <div class="relative z-30">
                     <div class="text-center mb-6 px-4">
                         <h2 class="text-4xl font-script text-stone-800">Our Gallery</h2>
@@ -378,14 +375,14 @@
             
             <!-- Form RSVP -->
             <section class="fade-in-section">
-                <div class="frame-elegant">
+                <div class="frame-floral">
                     <div class="relative z-30">
                         <div class="text-center mb-6">
                             <h2 class="text-3xl font-serif font-bold text-stone-800 mb-2">RSVP & Ucapan</h2>
                             <p class="text-sm text-stone-500">Kehadiran & doa restu Anda sangat berarti bagi kami.</p>
                         </div>
 
-                        <form id="rsvpForm" class="bg-stone-50 p-5 rounded-xl shadow-sm border border-stone-200">
+                        <form id="rsvpForm" class="bg-stone-50 p-5 rounded-xl shadow-sm border border-stone-200 relative z-40">
                             <div class="mb-4">
                                 <label class="block text-sm font-medium text-stone-700 mb-1">Nama Lengkap</label>
                                 <input type="text" id="rsvpNama" name="entry.78163206" class="w-full px-4 py-2 border border-stone-300 rounded focus:outline-none focus:border-stone-500 bg-white" placeholder="Masukkan nama Anda" required>
@@ -411,16 +408,16 @@
 
             <!-- DAFTAR UCAPAN TAMU -->
             <section class="fade-in-section">
-                <div class="frame-elegant">
+                <div class="frame-floral">
                     <div class="relative z-30">
                         <div class="text-center mb-6">
                             <h2 class="text-2xl font-serif font-bold text-stone-800 mb-2">Pesan Tamu</h2>
                             <p class="text-sm text-stone-500">Ucapan hangat dari orang-orang tersayang</p>
                         </div>
                         
-                        <div class="bg-stone-50 p-4 rounded-xl shadow-sm border border-stone-200">
+                        <div class="bg-stone-50 p-4 rounded-xl shadow-sm border border-stone-200 relative z-40">
                             <!-- Kontainer tempat pesan ditampilkan -->
-                            <div id="messagesContainer" class="max-h-80 overflow-y-auto space-y-3 pr-2">
+                            <div id="messagesContainer" class="max-h-80 overflow-y-auto space-y-3 pr-2 relative z-50">
                                 <p class="text-center text-xs text-stone-500 py-4">Memuat pesan tamu...</p>
                             </div>
                         </div>
@@ -431,7 +428,7 @@
 
         <!-- 8. SECTION: WEDDING GIFT (Collapsible) -->
         <section class="py-12 bg-stone-200 fade-in-section">
-            <div class="frame-elegant">
+            <div class="frame-floral">
                 <div class="relative z-30">
                     <div class="text-center mb-6">
                         <h2 class="text-2xl font-serif font-bold text-stone-800 mb-2">Wedding Gift</h2>
@@ -439,7 +436,7 @@
                     </div>
 
                     <!-- Elemen Collapsible -->
-                    <details class="bg-white rounded-lg shadow-sm border border-stone-200 overflow-hidden group">
+                    <details class="bg-white rounded-lg shadow-sm border border-stone-200 overflow-hidden group relative z-40">
                         <summary class="font-semibold text-stone-800 p-4 cursor-pointer flex justify-between items-center outline-none">
                             <span>Kirim Hadiah (Transfer Bank)</span>
                             <svg class="w-5 h-5 text-stone-500 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
